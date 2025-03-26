@@ -123,9 +123,7 @@ try {
 
       case "L":
         (() => {
-          const match = instruction_fragments[2].match(
-            /(-?(?:0x[0-9A-Fa-f]+|0b[01]+|\d+))\(([a-zA-Z]\d+)\)/
-          );
+          const match = instruction_fragments[2].match(/(-?(?:0x[0-9A-Fa-f]+|0b[01]+|\d+))\(([a-zA-Z]\w*)\)/);
           if (!match)
             throw new Error(`Malformed load instruction at line ${line}`);
 
@@ -166,11 +164,7 @@ try {
         break;
       case "S":
         (() => {
-          const match = instruction_fragments[2].match(
-            /(-?(?:0x[0-9A-Fa-f]+|0b[01]+|\d+))\(([a-zA-Z]\d+)\)/
-          );
-          if (!match)
-            throw new Error(`Malformed store instruction at line ${line}`);
+          const match = instruction_fragments[2].match(/(-?(?:0x[0-9A-Fa-f]+|0b[01]+|\d+))\(([a-zA-Z]\w*)\)/);
 
           const rs2n = RegistryWorldSet.__match(instruction_fragments[1]);
           const rs1n = RegistryWorldSet.__match(match[2]);
